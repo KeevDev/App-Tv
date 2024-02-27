@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Azure.Documents.Client;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace AppTv
         public MainPage()
         {
             InitializeComponent();
+            DocumentClient client = new DocumentClient(new Uri(Constants.EndpointUri), Constants.PrimaryKey);
         }
     }
 }
