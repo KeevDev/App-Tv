@@ -1,4 +1,4 @@
-﻿using Microsoft.Azure.Documents.Client;
+﻿
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,7 +14,20 @@ namespace AppTv
         public MainPage()
         {
             InitializeComponent();
-            DocumentClient client = new DocumentClient(new Uri(Constants.EndpointUri), Constants.PrimaryKey);
+            
+        }
+        private void Peliculas_Clicked(object sender, EventArgs e)
+        {
+            // Aquí puedes agregar la lógica para cambiar a la sección de películas
+            // Por ejemplo, puedes navegar a una nueva página o cargar contenido dinámicamente.
+            DisplayAlert("Mensaje", "Haz clic en la sección Películas", "OK");
+        }
+
+        private void Streaming_Clicked(object sender, EventArgs e)
+        {
+            // Aquí puedes agregar la lógica para cambiar a la sección de streaming
+            // Por ejemplo, puedes navegar a una nueva página o cargar contenido dinámicamente.
+            DisplayAlert("Mensaje", "Haz clic en la sección Streaming", "OK");
         }
     }
 }

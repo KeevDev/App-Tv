@@ -3,24 +3,37 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppTv.MainPage">
 
-    <StackLayout >
-    
-        <Frame BackgroundColor="#2196F3" Padding="20" CornerRadius="1">
-            <Label Text="AppTv" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
-        </Frame>    
-        
-        <Label Text="Start developing nowadsf" FontSize="Title" Padding="30,10,30,10"/>
-        <Label Text="Make changes to your XAML file and save to see your UI update in the running app with XAML Hot Reload. Give it a try!" FontSize="16" Padding="30,0,30,0"/>
-        <Label FontSize="16" Padding="30,24,30,0">
-            <Label.FormattedText>
-                <FormattedString>
-                    <FormattedString.Spans>
-                        <Span Text="Learn more at "/>
-                        <Span Text="https://aka.ms/xamarin-quickstart" FontAttributes="Bold"/>
-                    </FormattedString.Spans>
-                </FormattedString>
-            </Label.FormattedText>
-        </Label>
-    </StackLayout>
+    <Grid>
+        <!-- Encabezado -->
+        <Grid BackgroundColor="#A02207" VerticalOptions="Start" Padding="20,40,20,20">
+            <Label Text="AppTv" FontSize="20" FontAttributes="Bold" TextColor="White" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" />
+            <BoxView BackgroundColor="White" CornerRadius="15" WidthRequest="150" HeightRequest="40" HorizontalOptions="End" VerticalOptions="CenterAndExpand"/>
+            <!-- Barra de búsqueda -->
+            <SearchBar BackgroundColor="Transparent" Placeholder="Buscar..." WidthRequest="150" HorizontalOptions="End" VerticalOptions="CenterAndExpand"/>
+
+            <!-- Secciones -->
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Spacing="10">
+                <Frame BorderColor="Black" HasShadow="False" Padding="0" BackgroundColor="Transparent" CornerRadius="15" Opacity="0.5">
+                    <Button x:Name="btnPeliculas" Text="Peliculas" TextColor="White" BackgroundColor="Transparent" Clicked="Peliculas_Clicked"/>
+                </Frame>
+                <Button x:Name="btnStreaming" Text="Streaming" TextColor="White" BackgroundColor="Transparent" Clicked="Streaming_Clicked"/>
+            </StackLayout>
+        </Grid>
+
+        <!-- Contenido principal -->
+        <Grid Padding="20" RowSpacing="20" ColumnSpacing="20">
+            <!-- Películas-->
+            <Image Source="movie_1.jpg" Aspect="AspectFill" Grid.Row="0" Grid.Column="0"/>
+            <Image Source="movie_2.jpg" Aspect="AspectFill" Grid.Row="0" Grid.Column="1"/>
+            <Image Source="movie_3.jpg" Aspect="AspectFill" Grid.Row="1" Grid.Column="0"/>
+            <Image Source="movie_4.jpg" Aspect="AspectFill" Grid.Row="1" Grid.Column="1"/>
+        </Grid>
+
+        <!-- Pie de página -->
+        <Grid BackgroundColor="#A02207" VerticalOptions="End" Padding="20,20,20,40">
+            <Label Text="© 2024 AppTv" TextColor="White" FontSize="Micro" HorizontalOptions="Center"/>
+            
+        </Grid>
+    </Grid>
 
 </ContentPage>
