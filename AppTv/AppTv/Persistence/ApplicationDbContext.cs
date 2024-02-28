@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.EntityFrameworkCore;
+﻿using AppTv.Models.Entities;
+using Microsoft.Azure.Documents;
+using System;
+using System.IO;
+using Microsoft.Azure.Documents.Client;
 
 namespace AppTv.Persistence
 {
-    class ApplicationDbContext
-    {
-        //public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : options { 
-
-        //}
-
+    public class ApplicationDbContext{
         
-
     }
+
 }

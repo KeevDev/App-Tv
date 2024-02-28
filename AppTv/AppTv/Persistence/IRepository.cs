@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Threading.Tasks;
 
 namespace AppTv.Persistence
 {
-    interface IRepository<T>
+    public interface IRepository<Movies> where Movies : class
     {
-        IEnumerable<T> GetMovies();
-        void Add(T entity);
-
+        Task<List<Movies>> GetAllAsync();
+        Task<Movies> GetByIdAsync(int id);
+        Task AddAsync(Movies movie);
+        Task UpdateAsync(Movies movie);
+        Task DeleteAsync(Movies movie);
     }
 }
+
