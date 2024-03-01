@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace AppTv.Controller
+namespace AppTv.Persistence
 {
-    class SportController
+    internal interface INavigation
     {
     }
 }

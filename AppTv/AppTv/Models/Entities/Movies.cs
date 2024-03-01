@@ -4,7 +4,7 @@ using System.Text;
 
 namespace AppTv.Models.Entities
 {
-    class Pelicula
+    class Movies
     {
         public int Id { get; set; }
         public string Title { get; set; }

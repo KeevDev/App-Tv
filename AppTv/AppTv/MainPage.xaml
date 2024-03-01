@@ -13,22 +13,26 @@
 
             <!-- Secciones -->
             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Spacing="10">
-                <Frame BorderColor="Black" HasShadow="False" Padding="0" BackgroundColor="Transparent" CornerRadius="15" Opacity="0.5">
-                    <Button x:Name="btnPeliculas" Text="Peliculas" TextColor="White" BackgroundColor="Transparent" Clicked="Peliculas_Clicked"/>
+                <Frame BorderColor="Black" HasShadow="False" Padding="0" BackgroundColor="Transparent" CornerRadius="15" Opacity="0.5" >
+                    <Button  x:Name="btnMovies" Text="Peliculas" TextColor="White" BackgroundColor="Transparent" Clicked="Movies_Clicked"/>
                 </Frame>
-                <Button x:Name="btnStreaming" Text="Streaming" TextColor="White" BackgroundColor="Transparent" Clicked="Streaming_Clicked"/>
+                <Frame BorderColor="Black" HasShadow="False" Padding="0" BackgroundColor="Transparent" CornerRadius="15" Opacity="0.5">
+                    <Button x:Name="btnStreaming" Text="Streaming" TextColor="White" BackgroundColor="Transparent" Clicked="Streaming_Clicked"/>
+                </Frame>
+                 
             </StackLayout>
         </Grid>
 
         <!-- Contenido principal -->
         <Grid Padding="20" RowSpacing="20" ColumnSpacing="20">
+            <Label x:Name="etiquetaResultado" />
             <!-- Películas-->
             <Image Source="movie_1.jpg" Aspect="AspectFill" Grid.Row="0" Grid.Column="0"/>
             <Image Source="movie_2.jpg" Aspect="AspectFill" Grid.Row="0" Grid.Column="1"/>
             <Image Source="movie_3.jpg" Aspect="AspectFill" Grid.Row="1" Grid.Column="0"/>
             <Image Source="movie_4.jpg" Aspect="AspectFill" Grid.Row="1" Grid.Column="1"/>
-        </Grid>
-
+        </Grid> 
+ 
         <!-- Pie de página -->
         <Grid BackgroundColor="#A02207" VerticalOptions="End" Padding="20,20,20,40">
             <Label Text="© 2024 AppTv" TextColor="White" FontSize="Micro" HorizontalOptions="Center"/>
