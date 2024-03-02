@@ -9,29 +9,31 @@
             <Label Text="AppTv" FontSize="20" FontAttributes="Bold" TextColor="White" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" />
             <BoxView BackgroundColor="White" CornerRadius="15" WidthRequest="150" HeightRequest="40" HorizontalOptions="End" VerticalOptions="CenterAndExpand"/>
             <!-- Barra de búsqueda -->
-            <SearchBar BackgroundColor="Transparent" Placeholder="Buscar..." WidthRequest="150" HorizontalOptions="End" VerticalOptions="CenterAndExpand"/>
+            <SearchBar x:Name="mySearchBar" BackgroundColor="Transparent" Placeholder="Buscar..." WidthRequest="150" HorizontalOptions="End" VerticalOptions="CenterAndExpand"/>
 
             <!-- Secciones -->
             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Spacing="10">
+                <Button BorderColor="Black" Text="Peliculas" TextColor="White" BackgroundColor="Transparent" CornerRadius="15" Clicked="Movies_Clicked"/>
                 <Frame BorderColor="Black" HasShadow="False" Padding="0" BackgroundColor="Transparent" CornerRadius="15" Opacity="0.5" >
-                    <Button  x:Name="btnMovies" Text="Peliculas" TextColor="White" BackgroundColor="Transparent" Clicked="Movies_Clicked"/>
+                    <Button Text="Streaming" TextColor="White" BackgroundColor="Transparent" Clicked="Streaming_Clicked"/>
                 </Frame>
-                <Frame BorderColor="Black" HasShadow="False" Padding="0" BackgroundColor="Transparent" CornerRadius="15" Opacity="0.5">
-                    <Button x:Name="btnStreaming" Text="Streaming" TextColor="White" BackgroundColor="Transparent" Clicked="Streaming_Clicked"/>
-                </Frame>
+                
                  
             </StackLayout>
         </Grid>
+        <ScrollView>
 
-        <!-- Contenido principal -->
-        <Grid Padding="20" RowSpacing="20" ColumnSpacing="20">
-            <Label x:Name="etiquetaResultado" />
-            <!-- Películas-->
-            <Image Source="movie_1.jpg" Aspect="AspectFill" Grid.Row="0" Grid.Column="0"/>
-            <Image Source="movie_2.jpg" Aspect="AspectFill" Grid.Row="0" Grid.Column="1"/>
-            <Image Source="movie_3.jpg" Aspect="AspectFill" Grid.Row="1" Grid.Column="0"/>
-            <Image Source="movie_4.jpg" Aspect="AspectFill" Grid.Row="1" Grid.Column="1"/>
-        </Grid> 
+            <!-- Contenido principal -->
+            <Grid Padding="20" RowSpacing="20" ColumnSpacing="20">
+                <Label x:Name="etiquetaResultado" TextColor="White" />
+                <!-- Películas-->
+                <Image Source="movie_1.jpg" Aspect="AspectFill" Grid.Row="0" Grid.Column="0"/>
+                <Image Source="movie_2.jpg" Aspect="AspectFill" Grid.Row="0" Grid.Column="1"/>
+                <Image Source="movie_3.jpg" Aspect="AspectFill" Grid.Row="1" Grid.Column="0"/>
+                <Image Source="movie_4.jpg" Aspect="AspectFill" Grid.Row="1" Grid.Column="1"/>
+            </Grid>
+        
+        </ScrollView>
  
         <!-- Pie de página -->
         <Grid BackgroundColor="#A02207" VerticalOptions="End" Padding="20,20,20,40">

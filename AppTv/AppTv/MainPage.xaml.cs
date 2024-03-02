@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using AppTv.Persistence;
+//using AppTv.Views;
 namespace AppTv
 {
     public partial class MainPage : ContentPage
@@ -15,9 +16,31 @@ namespace AppTv
         {
             InitializeComponent();
             MostrarResultado();
-            //Movies_Clicked();
-            //Streaming_Clicked();
-            
+            mySearchBar.Focused += MySearchBar_Focused;
+        }
+
+        private void MySearchBar_Focused(object sender, FocusEventArgs e)
+        {
+            // Obtener el campo de entrada de texto dentro del SearchBar
+            SearchBar searchBar = (SearchBar)sender;
+            searchBar.IsVisible = false; // Esto es opcional para ocultar el SearchBar
+            Entry searchEntry = FindSearchEntry(searchBar);
+
+            // Enfocar el campo de entrada de texto
+            searchEntry.Focus();
+        }
+
+        private Entry FindSearchEntry(SearchBar searchBar)
+        {
+            // Recorrer los elementos hijos del SearchBar para encontrar el campo de entrada de texto
+            foreach (var child in searchBar.Descendants())
+            {
+                if (child is Entry entry)
+                {
+                    return entry;
+                }
+            }
+            return null;
         }
 
         private void MostrarResultado()
@@ -29,18 +52,12 @@ namespace AppTv
 
         private async void Movies_Clicked(object sender, EventArgs e)
         {
-
-            //await btnMovies.DisplayAlert("Mensaje", "Haz clic en la sección Películas", "OK");
-            // Aquí puedes agregar la lógica para cambiar a la sección de películas
-            // Por ejemplo, puedes navegar a una nueva página o cargar contenido dinámicamente.
-            DisplayAlert("Mensaje", "Haz clic en la sección Streaming", "OK");
+            await DisplayAlert("Título", "Mensaje de la alerta", "Aceptar");
         }
 
-        private void Streaming_Clicked(object sender, EventArgs e)
+        private async void Streaming_Clicked(object sender, EventArgs args)
         {
-            // Aquí puedes agregar la lógica para cambiar a la sección de streaming
-            // Por ejemplo, puedes navegar a una nueva página o cargar contenido dinámicamente.
-            DisplayAlert("Mensaje", "Haz clic en la sección Streaming", "OK");
+            await DisplayAlert("Título", "Mensaje de la alerta", "Aceptar");
         }
 
     }
