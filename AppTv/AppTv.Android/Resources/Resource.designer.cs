@@ -18789,18 +18789,6 @@ namespace AppTv.Droid
 			// aapt resource value: 0x7F0C0002
 			public const int launcher_foreground = 2131492866;
 			
-			// aapt resource value: 0x7F0C0003
-			public const int movie_1 = 2131492867;
-			
-			// aapt resource value: 0x7F0C0004
-			public const int movie_2 = 2131492868;
-			
-			// aapt resource value: 0x7F0C0005
-			public const int movie_3 = 2131492869;
-			
-			// aapt resource value: 0x7F0C0006
-			public const int movie_4 = 2131492870;
-			
 			static Mipmap()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();

@@ -1,6 +1,8 @@
-﻿using System;
+﻿
+using AppTv.Views;
+
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+ 
 
 namespace AppTv
 {
@@ -9,10 +11,11 @@ namespace AppTv
         public App()
         {
             InitializeComponent();
-
-            MainPage = new MainPage();
+            MainPage = new NavigationPage(new MainPage());
+            
         }
 
+        
         protected override void OnStart()
         {
         }

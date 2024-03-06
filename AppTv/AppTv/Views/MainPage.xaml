@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppTv.MainPage">
+    <!-- Page -->
+        <StackLayout >
+        <!-- Header -->
+        <Grid BackgroundColor="#A02207" VerticalOptions="Start" Padding="20,40,20,20">
+            <Label x:Name="etiquetaResultado" TextColor="White"  />
+
+            <Label Text="AppTv" FontSize="20" FontAttributes="Bold" TextColor="White" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" />
+            <SearchBar  BackgroundColor="#FFFFFF" Placeholder="Buscar..." WidthRequest="200" HorizontalOptions="End" VerticalOptions="CenterAndExpand" />
+
+            <!-- Secciones -->
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Spacing="10">
+                <Button  BackgroundColor="Transparent"  Text="Peliculas" TextColor="White"   Clicked="Movies_Clicked" />
+                <Button Text="Streaming" TextColor="White" BackgroundColor="Transparent" Clicked="Streaming_Clicked"/>
+            </StackLayout>
+        </Grid>
+
+        
+        <!-- Main -->
+        <Grid  VerticalOptions="CenterAndExpand" >
+            <Label Text="Welcome to AppTV" FontSize="25" TextColor="White" HorizontalOptions="Center" FontAttributes="Bold" VerticalOptions="Center" Opacity="0.3"/>
+        </Grid>
+        
+        <!--Suscripcion-->
+        <ContentView x:Name="SuscripcionView" IsVisible="False">
+            <StackLayout BackgroundColor="White" Padding="10" Margin="40,0,40,0" Spacing="0">
+                <Label TextColor="Black" Text="Suscripción" FontSize="Title" HorizontalOptions="Center" Margin="0,0,0,10" />
+                <Entry  Keyboard="Text" TextColor="Black" Placeholder="Nombre" PlaceholderColor="Black" Opacity=".5" />
+                <Entry Keyboard="Email" TextColor="Black" Placeholder="Correo electrónico" PlaceholderColor="Black" Opacity=".5"/>
+                <Entry Keyboard="Telephone" TextColor="Black" Placeholder="Teléfono" PlaceholderColor="Black" Opacity=".5" />
+
+                <Grid RowDefinitions="*,*" HeightRequest="400" Margin="0,20,0,0">
+                    <Button Text="Enviar" Clicked="OnCancelarClicked" Grid.Column="1" />
+                    <Button Text="Cancelar" Clicked="OnCancelarClicked" Grid.Column="0" />
+                </Grid>
+                
+            </StackLayout>
+        </ContentView>
+        <!--Suscripcion-->
+            
+            
+        <!-- Footer -->
+        <Grid BackgroundColor="#A02207" VerticalOptions="EndAndExpand" Padding="20,40,20,40">
+            <Label Text="© 2024 AppTv" TextColor="White" FontSize="Micro" HorizontalOptions="Center"/>
+        </Grid>
+    </StackLayout>
+</ContentPage>
