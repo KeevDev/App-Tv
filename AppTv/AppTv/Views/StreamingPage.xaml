@@ -6,10 +6,12 @@
         <!-- Page -->
         <StackLayout>
             <!-- Header -->
-            <Grid BackgroundColor="#A02207" VerticalOptions="Start" Padding="20,40,20,20">
-                <Label x:Name="etiquetaResultado" TextColor="White"  />
+            <Grid BackgroundColor="#1a1110" VerticalOptions="Start" Padding="20,40,20,20">
+                <StackLayout HorizontalOptions="Start" VerticalOptions="Start">
+                    <Label Text="AppTv" FontSize="20" FontAttributes="Italic" TextColor="White" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" />
+                    <Label x:Name="etiquetaResultado" TextColor="White"  />
+                </StackLayout>
 
-                <Label Text="AppTv" FontSize="20" FontAttributes="Bold" TextColor="White" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" />
                 <SearchBar  BackgroundColor="#FFFFFF" Placeholder="Buscar..." WidthRequest="200" HorizontalOptions="End" VerticalOptions="CenterAndExpand" />
 
                 <!-- Secciones -->
@@ -21,42 +23,44 @@
             </Grid>
 
 
-            <!-- Main  4 filas por n columnas-->
-            <Grid Margin="0,0,0,5"  VerticalOptions="FillAndExpand" >
+            <Grid Margin="0,0,0,0"  VerticalOptions="FillAndExpand" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto"/>
 
                     <ColumnDefinition Width="*" />
 
                 </Grid.ColumnDefinitions>
-                <StackLayout BackgroundColor="#A02207" Grid.Column="0">
-                    <Button BackgroundColor="Transparent" BorderWidth="2" Text="Futbol" />
-                    <Button BackgroundColor="Transparent" BorderWidth="2" Text="Basquetbol" />
-                    <Button  BackgroundColor="Transparent" BorderWidth="2"  Text="Lucha" />
-                    <Button BackgroundColor="Transparent" BorderWidth="2"  Text="Tenis" />
+                <StackLayout BackgroundColor="#1a1110" Grid.Column="0">
+                    <Button BackgroundColor="Transparent" BorderWidth="2" Text="Romance" />
+                    <Button BackgroundColor="Transparent" BorderWidth="2" Text="Terror" />
+                    <Button  BackgroundColor="Transparent" BorderWidth="2"  Text="Drama" />
+                    <Button BackgroundColor="Transparent" BorderWidth="2"  Text="Acción" />
                 </StackLayout>
 
                 <Grid Grid.Column="1" RowDefinitions="*,*,*,*" HeightRequest="400">
+                    <ImageButton x:Name="Casilla" Grid.Column="0" Clicked="Frame_Clicked" />
+                    <Label x:Name="Casilla1" VerticalOptions="Center" HorizontalOptions="Center" />
 
-                    <Frame Grid.Column="0"></Frame>
-                    <Frame Grid.Row="1"></Frame>
-                    <Frame Grid.Row="2"></Frame>
-                    <Frame Grid.Row="3"></Frame>
-                    <Frame Grid.Column="1"></Frame>
-                    <Frame Grid.Column="1" Grid.Row="1"></Frame>
-                    <Frame Grid.Column="1" Grid.Row="2"></Frame>
-                    <Frame Grid.Column="1" Grid.Row="3"></Frame>
-                    <Frame Grid.Column="2"></Frame>
-                    <Frame Grid.Column="2" Grid.Row="1"></Frame>
-                    <Frame Grid.Column="2" Grid.Row="2"></Frame>
-                    <Frame Grid.Column="2" Grid.Row="3"></Frame>
-                    <Frame Grid.Column="3"></Frame>
-                    <Frame Grid.Column="3" Grid.Row="1"></Frame>
-                    <Frame Grid.Column="3" Grid.Row="2"></Frame>
-                    <Frame Grid.Column="3" Grid.Row="3"></Frame>
+                    <ImageButton Grid.Row="1" Clicked="Frame_Clicked" />
+                    <ImageButton Grid.Row="2" Clicked="Frame_Clicked" />
+                    <ImageButton Grid.Row="3" Clicked="Frame_Clicked" />
 
+                    <ImageButton Grid.Column="1" Clicked="Frame_Clicked" />
+                    <ImageButton Grid.Column="1" Grid.Row="1" Clicked="Frame_Clicked" />
+                    <ImageButton Grid.Column="1" Grid.Row="2" Clicked="Frame_Clicked" />
+                    <ImageButton Grid.Column="1" Grid.Row="3" Clicked="Frame_Clicked" />
 
+                    <ImageButton Grid.Column="2" Clicked="Frame_Clicked" />
+                    <ImageButton Grid.Column="2" Grid.Row="1" Clicked="Frame_Clicked" />
+                    <ImageButton Grid.Column="2" Grid.Row="2" Clicked="Frame_Clicked" />
+                    <ImageButton Grid.Column="2" Grid.Row="3" Clicked="Frame_Clicked" />
+
+                    <ImageButton Grid.Column="3" Clicked="Frame_Clicked" />
+                    <ImageButton Grid.Column="3" Grid.Row="1" Clicked="Frame_Clicked" />
+                    <ImageButton Grid.Column="3" Grid.Row="2" Clicked="Frame_Clicked" />
+                    <ImageButton Grid.Column="3" Grid.Row="3" Clicked="Frame_Clicked" />
                 </Grid>
+
             </Grid>
 
 

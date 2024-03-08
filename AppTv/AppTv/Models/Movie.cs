@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace AppTv.Models.Entities
+namespace ApiAppTv.Models
 {
-    public class Movies
+    public class Movie
     {
         public int Id { get; set; }
         public string Title { get; set; }
@@ -13,8 +13,8 @@ namespace AppTv.Models.Entities
         public int Duration { get; set; }
         public string Synopsis { get; set; }
         public bool Available { get; set; }
-        public byte[] Cover { get; set; } 
-        public byte[] MovieFile { get; set; } 
+        public byte[] Cover { get; set; }
+        public byte[] MovieVideo { get; set; }
         public int SubtitleLanguageId { get; set; }
         public int Rating { get; set; }
         public int Views { get; set; }

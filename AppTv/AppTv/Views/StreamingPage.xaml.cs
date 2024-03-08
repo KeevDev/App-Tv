@@ -16,6 +16,7 @@ namespace AppTv.Views
         public StreamingPage()
         {
             InitializeComponent();
+            MostrarResultado();
         }
 
         async void Back_Clicked(object sender, EventArgs e)
@@ -28,12 +29,13 @@ namespace AppTv.Views
         {
             IDeviceInfo info = new DeviceInfo();
             string resultado = info.GetSerialNumber();
-            etiquetaResultado.Text = resultado;
+
+            etiquetaResultado.Text = $"Usuario : {resultado}";
         }
 
         async void Movies_Clicked(object sender, EventArgs e)
         {
-
+            await Navigation.PopAsync();
             await Navigation.PushAsync(new MoviesPage());
 
 
@@ -42,9 +44,17 @@ namespace AppTv.Views
 
         private async void Streaming_Clicked(object sender, EventArgs args)
         {
-
+            await Navigation.PopAsync();
             await Navigation.PushAsync(new StreamingPage());
 
         }
+
+
+        private void Frame_Clicked(object sender, EventArgs e)
+        {
+            // Redireccionar
+        }
+
+
     }
  }

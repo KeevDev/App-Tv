@@ -5,19 +5,22 @@
     <!-- Page -->
         <StackLayout >
         <!-- Header -->
-        <Grid BackgroundColor="#A02207" VerticalOptions="Start" Padding="20,40,20,20">
-            <Label x:Name="etiquetaResultado" TextColor="White"  />
-
-            <Label Text="AppTv" FontSize="20" FontAttributes="Bold" TextColor="White" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" />
-            <SearchBar  BackgroundColor="#FFFFFF" Placeholder="Buscar..." WidthRequest="200" HorizontalOptions="End" VerticalOptions="CenterAndExpand" />
+        <Grid BackgroundColor="#1a1110" VerticalOptions="Start" Padding="20,40,20,20">
+            <StackLayout HorizontalOptions="Start" VerticalOptions="Start">
+                <Label Text="AppTv" FontSize="20" FontAttributes="Italic" TextColor="White" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" />
+                <Label x:Name="etiquetaResultado" TextColor="White"  />
+            </StackLayout>
 
             <!-- Secciones -->
             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Spacing="10">
-                <Button  BackgroundColor="Transparent"  Text="Peliculas" TextColor="White"   Clicked="Movies_Clicked" />
-                <Button Text="Streaming" TextColor="White" BackgroundColor="Transparent" Clicked="Streaming_Clicked"/>
+                <Button BorderWidth="1" BorderColor="White" BackgroundColor="Transparent"  Text="Peliculas" TextColor="White"   Clicked="Movies_Clicked" />
+                <Button BorderWidth="1" BorderColor="White" Text="Streaming" TextColor="White" BackgroundColor="Transparent" Clicked="Streaming_Clicked"/>
             </StackLayout>
         </Grid>
 
+        
+            
+            
         
         <!-- Main -->
         <Grid  VerticalOptions="CenterAndExpand" >
@@ -43,7 +46,7 @@
             
             
         <!-- Footer -->
-        <Grid BackgroundColor="#A02207" VerticalOptions="EndAndExpand" Padding="20,40,20,40">
+        <Grid BackgroundColor="#1a1110" VerticalOptions="EndAndExpand" Padding="20,40,20,40">
             <Label Text="© 2024 AppTv" TextColor="White" FontSize="Micro" HorizontalOptions="Center"/>
         </Grid>
     </StackLayout>
