@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppTv.Views.MoviesPage">
+    <ContentPage.Content>
+        <!-- Page -->
+        <StackLayout>
+            <!-- Header -->
+            <Grid BackgroundColor="#1a1110" VerticalOptions="Start" Padding="20,40,20,20">
+                <StackLayout HorizontalOptions="Start" VerticalOptions="Start">
+                    <Label Text="AppTv" FontSize="20" FontAttributes="Italic" TextColor="White" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" />
+                    <Label x:Name="etiquetaResultado" TextColor="White"  />
+                </StackLayout>
+                
+
+                
+                <!-- Secciones -->
+                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Spacing="10">
+                    <Button  BorderColor="#1a1110"  Text="Peliculas" TextColor="White"  />
+                    <Button Text="Streaming" TextColor="White" BackgroundColor="Transparent" Clicked="Streaming_Clicked"/>
+                </StackLayout>
+
+                <StackLayout HeightRequest="100" WidthRequest="300" Orientation="Vertical" HorizontalOptions="EndAndExpand"  VerticalOptions="EndAndExpand" >
+                    <SearchBar HeightRequest="40" BackgroundColor="#FFFFFF" Placeholder="Buscar..." WidthRequest="400" HorizontalOptions="End" VerticalOptions="CenterAndExpand" />
+
+                    <Grid VerticalOptions="EndAndExpand" HorizontalOptions="EndAndExpand">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Picker Grid.Column="0" x:Name="FilterPicker" Title="Seleccionar filtro">
+                            <Picker.ItemsSource>
+                                <x:Array Type="{x:Type x:String}">
+                                    <x:String>Mas popular</x:String>
+                                    <x:String>Menos popular</x:String>
+                                    <x:String>Mas visto</x:String>
+                                    <x:String>Mas reciente</x:String>
+                                </x:Array>
+                            </Picker.ItemsSource>
+                        </Picker>
+                        <Button Grid.Column="1" Text="Aplicar filtros" TextTransform="Uppercase" />
+                    </Grid>
+
+                </StackLayout>
+            </Grid>
+
+
+            <!-- Main  4 filas por n columnas-->
+            <Grid Margin="0,0,0,0"  VerticalOptions="FillAndExpand" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    
+                    <ColumnDefinition Width="*" />
+                    
+                </Grid.ColumnDefinitions>
+                <StackLayout BackgroundColor="#1a1110" Grid.Column="0">
+                    <Button BackgroundColor="Transparent" BorderWidth="2" Text="Romance" />
+                    <Button BackgroundColor="Transparent" BorderWidth="2" Text="Terror" />
+                    <Button  BackgroundColor="Transparent" BorderWidth="2"  Text="Drama" />
+                    <Button BackgroundColor="Transparent" BorderWidth="2"  Text="Acción" />
+                </StackLayout>
+
+                <Grid Grid.Column="1" RowDefinitions="*,*,*,*" HeightRequest="400">
+                    <ImageButton x:Name="Casilla" Grid.Column="0" Clicked="Frame_Clicked" />
+                    <Label x:Name="Casilla1" VerticalOptions="Center" HorizontalOptions="Center" />
+                    
+                    <ImageButton Grid.Row="1" Clicked="Frame_Clicked" />
+                    <ImageButton Grid.Row="2" Clicked="Frame_Clicked" />
+                    <ImageButton Grid.Row="3" Clicked="Frame_Clicked" />
+
+                    <ImageButton Grid.Column="1" Clicked="Frame_Clicked" />
+                    <ImageButton Grid.Column="1" Grid.Row="1" Clicked="Frame_Clicked" />
+                    <ImageButton Grid.Column="1" Grid.Row="2" Clicked="Frame_Clicked" />
+                    <ImageButton Grid.Column="1" Grid.Row="3" Clicked="Frame_Clicked" />
+
+                    <ImageButton Grid.Column="2" Clicked="Frame_Clicked" />
+                    <ImageButton Grid.Column="2" Grid.Row="1" Clicked="Frame_Clicked" />
+                    <ImageButton Grid.Column="2" Grid.Row="2" Clicked="Frame_Clicked" />
+                    <ImageButton Grid.Column="2" Grid.Row="3" Clicked="Frame_Clicked" />
+
+                    <ImageButton Grid.Column="3" Clicked="Frame_Clicked" />
+                    <ImageButton Grid.Column="3" Grid.Row="1" Clicked="Frame_Clicked" />
+                    <ImageButton Grid.Column="3" Grid.Row="2" Clicked="Frame_Clicked" />
+                    <ImageButton Grid.Column="3" Grid.Row="3" Clicked="Frame_Clicked" />
+                </Grid>
+
+            </Grid>
+
+
+
+
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
