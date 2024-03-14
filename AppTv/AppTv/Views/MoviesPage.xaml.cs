@@ -4,7 +4,9 @@ using AppTv.Models;
 using AppTv.Persistence;
 using System;
 using Xamarin.Forms;
-
+using System.Collections.Generic;
+using Newtonsoft.Json;
+using System.IO;
 
 
 
@@ -14,36 +16,74 @@ namespace AppTv.Views
 	public partial class MoviesPage : ContentPage
 	{
         private MoviesService _moviesService = new MoviesService();
+        private CustomerService _customerService = new CustomerService();
         public MoviesPage ()
 		{
 			InitializeComponent ();
-            MostrarResultado();
+            Info();
             LoadMovies();
         }
 
-        private void insertInfo()
+        private void insertInfo(List<Movie> movies)
         {
+            moviesGrid.Children.Clear(); 
+
+            int numRows = movies.Count / 4; 
+            if (movies.Count % 4 != 0) 
+                numRows++;
+
+            moviesGrid.RowDefinitions.Clear(); 
+
+            for (int i = 0; i < numRows; i++)
+            {
+                moviesGrid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Star }); 
+            }
 
             
+            for (int i = 0; i < movies.Count; i++)
+            {
+                int row = i / 4; 
+                int column = i % 4; 
+                
+                ImageButton imageButton = new ImageButton
+                {
+                    Source = movies[i].Cover, 
+                    Opacity = 0.7,
+                    Aspect = Aspect.AspectFill,
+                    Margin = new Thickness(0, 0, 0, 20),
+                };
 
+                imageButton.Clicked += Frame_Clicked; 
+
+
+                Label label = new Label
+                {
+                    Text = movies[i].Title,
+                    HorizontalOptions = LayoutOptions.Center, 
+                    VerticalOptions = LayoutOptions.EndAndExpand
+                };
+
+                // Agregar los controles al Grid
+                moviesGrid.Children.Add(imageButton, column, row); 
+                Grid.SetColumnSpan(label, 2);
+                moviesGrid.Children.Add(label, column, row); // Añadir la etiqueta en la misma columna y fila
+            }
         }
 
+        private async void LoadMovies()
+        {
+            try
+            {
+                List<Movie> movies = await _moviesService.GetMoviesAsync();
+                insertInfo(movies); 
+            }
+            catch (Exception ex)
+            {
+                
+                Console.WriteLine("Error al cargar las películas: " + ex.Message);
+            }
+        }
 
-        //private async void LoadMovies()
-        //{
-
-        //    List<Movie> movies = await _moviesService.GetMoviesAsync();
-
-        //    if (movies != null)
-        //    {
-        //        Casilla.BindingContext = movies[0];
-        //        Casilla1.Text = movies[0].Title;
-        //    }
-        //    else
-        //    {
-
-        //    }
-        //}
 
         private void Frame_Clicked(object sender, EventArgs e)
         {
@@ -58,12 +98,12 @@ namespace AppTv.Views
         }
 
 
-        private void MostrarResultado()
+        private async void Info()
         {
             IDeviceInfo info = new DeviceInfo();
-            string resultado = info.GetSerialNumber();
-            
-            etiquetaResultado.Text = $"Usuario : {resultado}";
+            string serial = info.GetSerialNumber();
+            string usuario = await _customerService.VerificarSerial(serial);
+            etiquetaResultado.Text = $"Bienvenido {usuario}";
         }
 
         //async void Movies_Clicked(object sender, EventArgs e)

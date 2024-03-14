@@ -60,29 +60,10 @@
                     <Button BackgroundColor="Transparent" BorderWidth="2"  Text="Acción" />
                 </StackLayout>
 
-                <Grid Grid.Column="1" RowDefinitions="*,*,*,*" HeightRequest="400">
-                    <ImageButton x:Name="Casilla" Grid.Column="0" Clicked="Frame_Clicked" />
-                    <Label x:Name="Casilla1" VerticalOptions="Center" HorizontalOptions="Center" />
-                    
-                    <ImageButton Grid.Row="1" Clicked="Frame_Clicked" />
-                    <ImageButton Grid.Row="2" Clicked="Frame_Clicked" />
-                    <ImageButton Grid.Row="3" Clicked="Frame_Clicked" />
-
-                    <ImageButton Grid.Column="1" Clicked="Frame_Clicked" />
-                    <ImageButton Grid.Column="1" Grid.Row="1" Clicked="Frame_Clicked" />
-                    <ImageButton Grid.Column="1" Grid.Row="2" Clicked="Frame_Clicked" />
-                    <ImageButton Grid.Column="1" Grid.Row="3" Clicked="Frame_Clicked" />
-
-                    <ImageButton Grid.Column="2" Clicked="Frame_Clicked" />
-                    <ImageButton Grid.Column="2" Grid.Row="1" Clicked="Frame_Clicked" />
-                    <ImageButton Grid.Column="2" Grid.Row="2" Clicked="Frame_Clicked" />
-                    <ImageButton Grid.Column="2" Grid.Row="3" Clicked="Frame_Clicked" />
-
-                    <ImageButton Grid.Column="3" Clicked="Frame_Clicked" />
-                    <ImageButton Grid.Column="3" Grid.Row="1" Clicked="Frame_Clicked" />
-                    <ImageButton Grid.Column="3" Grid.Row="2" Clicked="Frame_Clicked" />
-                    <ImageButton Grid.Column="3" Grid.Row="3" Clicked="Frame_Clicked" />
+                <Grid x:Name="moviesGrid" Grid.Column="1" RowDefinitions="*,*,*,*" HeightRequest="400">
+                    <!-- No hay elementos hijos aquí -->
                 </Grid>
+
 
             </Grid>
 

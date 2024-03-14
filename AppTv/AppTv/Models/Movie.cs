@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ApiAppTv.Models
+namespace AppTv.Models
 {
     public class Movie
     {
@@ -13,7 +13,7 @@ namespace ApiAppTv.Models
         public int Duration { get; set; }
         public string Synopsis { get; set; }
         public bool Available { get; set; }
-        public byte[] Cover { get; set; }
+        public string Cover { get; set; }
         public byte[] MovieVideo { get; set; }
         public int SubtitleLanguageId { get; set; }
         public int Rating { get; set; }

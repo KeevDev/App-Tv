@@ -1,38 +1,80 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Net.Http;
-//using System.Net.Http.Headers;
-//using System.Threading.Tasks;
-//using ApiAppTv.Models;
-//using Newtonsoft.Json;
+﻿using System;
+using System.Net.Http;
+using System.Threading.Tasks;
+using Xamarin.Forms;
+using AppTv.Models;
+using Newtonsoft.Json;
+using System.Collections.Generic;
 
-//namespace AppTv.Persistence {
+namespace AppTv.Persistence
+{
+    public class MoviesService
+    {
+        private readonly string _baseUrl = "http://192.168.1.2:45455/api/";
+        private readonly HttpClient _httpClient = new HttpClient();
 
-//    public class MoviesService
-//    {
-//        private HttpClient _httpClient = new HttpClient();
-//        private string _baseUrl = "https://localhost:44359/api/Movies";
+        public async Task<List<Movie>> GetMoviesAsync()
+        {
+            try
+            {
+                HttpResponseMessage response = await _httpClient.GetAsync(_baseUrl + "Movies");
 
-//        public async Task<List<Movie>> GetMoviesAsync()
-//        {
-//            try
-//            {
-//                var request = new HttpRequestMessage(HttpMethod.Get, _baseUrl);
-//                request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                if (response.IsSuccessStatusCode)
+                {
+                    string responseBody = await response.Content.ReadAsStringAsync();
+                    List<Movie> movies = JsonConvert.DeserializeObject<List<Movie>>(responseBody);
+                    return movies;
+                }
+                else
+                {
+                    throw new HttpRequestException("Error en la solicitud HTTP: " + response.StatusCode);
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+                throw new HttpRequestException("Error de red: " + ex.Message, ex);
+            }
+            catch (JsonException ex)
+            {
+                throw new JsonException("Error al deserializar la respuesta JSON: " + ex.Message, ex);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error inesperado: " + ex.Message, ex);
+            }
+        }
 
-//                var response = await _httpClient.SendAsync(request);
-//                response.EnsureSuccessStatusCode();
-//                var content = await response.Content.ReadAsStringAsync();
-//                return JsonConvert.DeserializeObject<List<Movie>>(content);
-//            }
-//            catch (Exception ex)
-//            {
-//                // Manejar la excepción
-//                return null;
-//            }
-//        }
-//    }
+        public async Task<List<Movie>> GetMoviesByGenreAsync(string genre)
+        {
+            try
+            {
+                string url = $"{_baseUrl}?genre={genre}";
+                HttpResponseMessage response = await _httpClient.GetAsync(url);
 
-
-//}
+                if (response.IsSuccessStatusCode)
+                {
+                    string responseBody = await response.Content.ReadAsStringAsync();
+                    List<Movie> movies = JsonConvert.DeserializeObject<List<Movie>>(responseBody);
+                    return movies;
+                }
+                else
+                {
+                    throw new HttpRequestException("Error en la solicitud HTTP: " + response.StatusCode);
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+                throw new HttpRequestException("Error de red: " + ex.Message, ex);
+            }
+            catch (JsonException ex)
+            {
+                throw new JsonException("Error al deserializar la respuesta JSON: " + ex.Message, ex);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error inesperado: " + ex.Message, ex);
+            }
+        }
+    }
+}
 
