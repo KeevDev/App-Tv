@@ -14,7 +14,7 @@ namespace AppTv.Models
         public string Synopsis { get; set; }
         public bool Available { get; set; }
         public string Cover { get; set; }
-        public byte[] MovieVideo { get; set; }
+        public string MovieVideo { get; set; }
         public int SubtitleLanguageId { get; set; }
         public int Rating { get; set; }
         public int Views { get; set; }

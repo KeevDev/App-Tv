@@ -2,11 +2,12 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppTv.Views.MoviePlayerPage">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+    <ContentPage.Content >
+        <StackLayout >
+            <Frame BackgroundColor="#1a1110" BorderColor="Gray" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <WebView x:Name="MiWebView" Source="http://192.168.1.2:5500/f.html"
+                         HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+            </Frame>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

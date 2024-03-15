@@ -61,7 +61,7 @@
                 </StackLayout>
 
                 <Grid x:Name="moviesGrid" Grid.Column="1" RowDefinitions="*,*,*,*" HeightRequest="400">
-                    <!-- No hay elementos hijos aquí -->
+                    
                 </Grid>
 
 
