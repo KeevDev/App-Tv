@@ -9,7 +9,6 @@ namespace AppTv.Views
         {
             InitializeComponent();
 
-            // Suscribe el método CambiarURLIframe al evento Appearing de la página
             Appearing += (sender, e) => CambiarURLIframe(url);
         }
 
@@ -17,12 +16,10 @@ namespace AppTv.Views
         {
             try
             {
-                // Usamos JavaScript para cambiar la URL del iframe
                 await MiWebView.EvaluateJavaScriptAsync($"document.getElementById('miIframe').src = '{nuevaURL}';");
             }
             catch (Exception ex)
             {
-                // Maneja cualquier error
                 Console.WriteLine("Error al cambiar la URL del iframe: " + ex.Message);
             }
         }

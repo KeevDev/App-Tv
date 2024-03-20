@@ -12,17 +12,24 @@
                     <Label x:Name="etiquetaResultado" TextColor="White"  />
                 </StackLayout>
 
-                <SearchBar  BackgroundColor="#FFFFFF" Placeholder="Buscar..." WidthRequest="200" HorizontalOptions="End" VerticalOptions="CenterAndExpand" />
+
 
                 <!-- Secciones -->
                 <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Spacing="10">
+                    <Button  BorderColor="#1a1110"  Text="Peliculas" TextColor="White " BackgroundColor="Transparent"   />
+                    <Button Text="Streaming" TextColor="White" />
+                </StackLayout>
+
+                <StackLayout HeightRequest="100" WidthRequest="300" Orientation="Vertical" HorizontalOptions="EndAndExpand"  VerticalOptions="EndAndExpand" >
+                    <SearchBar HeightRequest="40" BackgroundColor="#FFFFFF" Placeholder="Buscar..." WidthRequest="400" HorizontalOptions="End" VerticalOptions="CenterAndExpand" />
+
                     
-                    <Button Text="Peliculas" TextColor="White" BackgroundColor="Transparent" Clicked="Movies_Clicked"/>
-                    <Button  BorderColor="Black"  Text="Streaming" TextColor="White"  CornerRadius="15" Clicked="Streaming_Clicked" />
+
                 </StackLayout>
             </Grid>
 
 
+            <!-- Main  4 filas por n columnas-->
             <Grid Margin="0,0,0,0"  VerticalOptions="FillAndExpand" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto"/>
@@ -31,35 +38,16 @@
 
                 </Grid.ColumnDefinitions>
                 <StackLayout BackgroundColor="#1a1110" Grid.Column="0">
-                    <Button BackgroundColor="Transparent" BorderWidth="2" Text="Romance" />
-                    <Button BackgroundColor="Transparent" BorderWidth="2" Text="Terror" />
-                    <Button  BackgroundColor="Transparent" BorderWidth="2"  Text="Drama" />
-                    <Button BackgroundColor="Transparent" BorderWidth="2"  Text="Acción" />
+                    <Button BackgroundColor="Transparent" BorderWidth="2" Text="Futbol" />
+                    <Button BackgroundColor="Transparent" BorderWidth="2" Text="Lucha" />
+                    <Button  BackgroundColor="Transparent" BorderWidth="2"  Text="Basquetbol" />
+                    <Button BackgroundColor="Transparent" BorderWidth="2"  Text="Tenis" />
                 </StackLayout>
 
-                <Grid Grid.Column="1" RowDefinitions="*,*,*,*" HeightRequest="400">
-                    <ImageButton x:Name="Casilla" Grid.Column="0" Clicked="Frame_Clicked" />
-                    <Label x:Name="Casilla1" VerticalOptions="Center" HorizontalOptions="Center" />
+                <Grid x:Name="moviesGrid" Grid.Column="1" RowDefinitions="*,*,*,*" HeightRequest="400">
 
-                    <ImageButton Grid.Row="1" Clicked="Frame_Clicked" />
-                    <ImageButton Grid.Row="2" Clicked="Frame_Clicked" />
-                    <ImageButton Grid.Row="3" Clicked="Frame_Clicked" />
-
-                    <ImageButton Grid.Column="1" Clicked="Frame_Clicked" />
-                    <ImageButton Grid.Column="1" Grid.Row="1" Clicked="Frame_Clicked" />
-                    <ImageButton Grid.Column="1" Grid.Row="2" Clicked="Frame_Clicked" />
-                    <ImageButton Grid.Column="1" Grid.Row="3" Clicked="Frame_Clicked" />
-
-                    <ImageButton Grid.Column="2" Clicked="Frame_Clicked" />
-                    <ImageButton Grid.Column="2" Grid.Row="1" Clicked="Frame_Clicked" />
-                    <ImageButton Grid.Column="2" Grid.Row="2" Clicked="Frame_Clicked" />
-                    <ImageButton Grid.Column="2" Grid.Row="3" Clicked="Frame_Clicked" />
-
-                    <ImageButton Grid.Column="3" Clicked="Frame_Clicked" />
-                    <ImageButton Grid.Column="3" Grid.Row="1" Clicked="Frame_Clicked" />
-                    <ImageButton Grid.Column="3" Grid.Row="2" Clicked="Frame_Clicked" />
-                    <ImageButton Grid.Column="3" Grid.Row="3" Clicked="Frame_Clicked" />
                 </Grid>
+
 
             </Grid>
 

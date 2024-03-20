@@ -1,22 +1,19 @@
 ﻿using AppTv.Persistence;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+
 
 namespace AppTv.Views
 {
     
     public partial class StreamingPage : ContentPage
     {
+        private MoviesService _moviesService = new MoviesService();
+        private CustomerService _customerService = new CustomerService();
         public StreamingPage()
         {
             InitializeComponent();
-            MostrarResultado();
+            Info();
         }
 
         async void Back_Clicked(object sender, EventArgs e)
@@ -25,12 +22,12 @@ namespace AppTv.Views
         }
 
 
-        private void MostrarResultado()
+        private async void Info()
         {
             IDeviceInfo info = new DeviceInfo();
-            string resultado = info.GetSerialNumber();
-
-            etiquetaResultado.Text = $"Usuario : {resultado}";
+            string serial = info.GetSerialNumber();
+            string usuario = await _customerService.VerificarSerial(serial);
+            etiquetaResultado.Text = $"Bienvenido {usuario}";
         }
 
         async void Movies_Clicked(object sender, EventArgs e)

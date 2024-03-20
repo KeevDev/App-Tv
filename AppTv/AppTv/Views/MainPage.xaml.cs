@@ -127,8 +127,18 @@ namespace AppTv
         {
             try
             {
-                await Navigation.PopAsync();
-                await Navigation.PushAsync(new StreamingPage());
+                string serial = info();
+                bool pay = await PayVerification(serial);
+                if (pay)
+                {
+                    await Navigation.PopAsync();
+                    await Navigation.PushAsync(new StreamingPage());
+                }
+                else
+                {
+                    throw new Exception();
+                }
+
             }
             catch (Exception ex)
             {
