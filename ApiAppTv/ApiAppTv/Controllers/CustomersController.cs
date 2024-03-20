@@ -46,6 +46,35 @@ namespace ApiAppTv.Controllers
             return CreatedAtAction(nameof(GetCustomer), new { serial = customer.Serial }, customer);
         }
 
+        [HttpPut("IdStripe/{id}")]
+        public async Task<IActionResult> PutIdStripe(int id, Customer customer)
+        {
+            try
+            {
+                // Buscar el cliente por su ID
+                var existingCustomer = await _context.Customer.FindAsync(id);
+
+                if (existingCustomer == null)
+                {
+                    return NotFound();
+                }
+
+                // Actualizar el campo IdStripe del cliente encontrado
+                existingCustomer.IdStripe = customer.IdStripe;
+
+                // Guardar los cambios en la base de datos
+                await _context.SaveChangesAsync();
+
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                // Manejar cualquier excepción y devolver un código de error apropiado junto con el mensaje de error
+                return StatusCode(500, "Error al actualizar el cliente: " + ex.Message);
+            }
+        }
+
+
         [HttpPut("{serial}")]
         public async Task<IActionResult> PutCustomer(string serial, Customer customer)
         {

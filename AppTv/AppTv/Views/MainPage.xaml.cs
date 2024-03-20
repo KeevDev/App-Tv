@@ -1,131 +1,177 @@
-﻿
-using System;
+﻿using System;
 using Xamarin.Forms;
 using AppTv.Persistence;
 using AppTv.Views;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using AppTv;
-using Android.Content;
+using AppTv.Models;
+using System.Collections.Generic;
+using Java.Util;
+using System.Linq;
+
 
 namespace AppTv
 {
     public partial class MainPage : ContentPage
     {
-        
-        
-        
+        private CustomerService _customerService = new CustomerService();
+        private PayService _payService = new PayService();
+
         public MainPage()
         {
-            
             InitializeComponent();
-            MostrarResultado();
-            
-           
         }
 
-      
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            await VerificarCuenta();
+        }
 
 
-        //private async Task<bool> VerificarCuenta()
-        //{
-        //    IDeviceInfo info = new DeviceInfo();
-        //    string serial = info.GetSerialNumber();
+        private void OnSend(object sender, EventArgs e)
+        {
+            string serial = info();
+            Header.Opacity = 1;
+            UnfocusFooter.Opacity = 1;
+            SuscripcionView.IsVisible = false;
 
-        //    bool cuentaExiste = await db.VerificarSerial(serial);
+            Grid parentGrid = (Grid)Main.Parent;
+            Grid.SetRow(Main, 1);
+            CrearCliente(serial);
 
-        //    if (cuentaExiste)
-        //    {
-        //        // verificar pago prox
-        //        return true;
-        //    }
-        //    else
-        //    {
-        //        return false;
-        //    }
-        //}
+        }
 
+        private void OnCancel(object sender, EventArgs e)
+        {
+            Header.Opacity = 1;
+            UnfocusFooter.Opacity = 1;
+            SuscripcionView.IsVisible = false;
 
+            Grid parentGrid = (Grid)Main.Parent;
+            Grid.SetRow(Main, 1);
+        }
+
+        private async Task CrearCliente(string serial)
+        {
+            try
+            {
+
+                Customer customer = new Customer();
+                customer.Name = NameCreate.Text;
+                customer.Email = EmailCreate.Text;
+                customer.Phone = TelephoneCreate.Text;
+                customer.Serial = serial;
+
+                Customer createdCustomer = await _customerService.CreateCustomer(customer);
+                string IdStripe = await _payService.CreateUserStripe(customer);
+                await _customerService.UpdateIdStripe(createdCustomer, IdStripe);
+                // metodo para llevar al primer pago (pay intent)
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al crear el cliente: " + ex.Message, ex);
+            }
+        }
+
+        private async Task VerificarCuenta()
+        {
+            try
+            {
+                string serial = info();
+                string usuario = await _customerService.VerificarSerial(serial);
+                if (usuario != null)
+                {
+                    etiquetaResultado.Text = $"Bienvenido {usuario}";
+                }
+                else
+                {
+                    SuscripcionView.IsVisible = true;
+                    etiquetaResultado.Text = "Cuenta no encontrada";
+                    Header.Opacity = 0.2;
+                    Grid parentGrid = (Grid)Main.Parent;
+                    Grid.SetRow(Main, 0);
+                    UnfocusFooter.Opacity = 0.2;
+                    
+                }
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", $"Error al verificar la cuenta: {ex.Message}", "OK");
+            }
+        }
 
         private async void Movies_Clicked(object sender, EventArgs e)
         {
             try
             {
-                // Verificar si hay un pago válido
-                //bool pagoValido = await VerificarPago();
-                //bool cuentaVerificada = await VerificarCuenta();
-                //await db.TestDatabaseConnection();
-                //if (cuentaVerificada)
-                //{
-                //    //Si el pago es válido->navegar a la página de películas
-                //    await DisplayAlert("Tienes una suscripcion activa", $"Disfruta de la app", "Aceptar");
-                await Navigation.PopAsync();
-                await Navigation.PushAsync(new MoviesPage());
-                //}
-                //else
-                //{
-                //    // Si el pago no es válido -> mostrar la pantalla de pago
-                //    SuscripcionView.IsVisible = true;
-                //}
+                string serial = info();
+                bool pay = await PayVerification(serial);
+                if (pay)
+                {
+                    await Navigation.PopAsync();
+                    await Navigation.PushAsync(new MoviesPage());
+                }
+                else
+                {
+                    throw new Exception();
+                }
+
             }
             catch (Exception ex)
             {
-
-                await DisplayAlert("Error", $"Error al verificar el pago: {ex.Message}", "OK");
+                await DisplayAlert("Error", $"Error al navegar a la página de películas: {ex.Message}", "OK");
             }
         }
 
-        async void Streaming_Clicked(object sender, EventArgs args)
+        private async void Streaming_Clicked(object sender, EventArgs e)
         {
             try
             {
+                string serial = info();
+                bool pay = await PayVerification(serial);
+                if (pay)
+                {
+                    await Navigation.PopAsync();
+                    await Navigation.PushAsync(new StreamingPage());
+                }
+                else
+                {
+                    throw new Exception();
+                }
 
-            //    bool pagoValido = VerificarPago();
-
-            //    if (pagoValido)
-            //    {
-            // Si el pago es válido -> navegar a la página de streaming
-                await Navigation.PopAsync();
-                await Navigation.PushAsync(new StreamingPage());
-            //    }
-            //    else
-            //    {
-            //        // Si el pago no es válido -> mostrar la pantalla de pago
-            //        SuscripcionView.IsVisible = true;
-            //    }
             }
             catch (Exception ex)
             {
-
-                await DisplayAlert("Error", $"Error al verificar el pago: {ex.Message}", "OK");
+                await DisplayAlert("Error", $"Error al navegar a la página de streaming: {ex.Message}", "OK");
             }
         }
 
-        //private bool VerificarPago()
-        //{
-        //   
-
-
-        //}
-
-
-        private void MostrarResultado()
+        private string info()
         {
-            string usuario = "d1ae2cbc8615b719";
-            //string persona = "Admin";
             IDeviceInfo info = new DeviceInfo();
             string resultado = info.GetSerialNumber();
-            if (resultado == usuario)
-            {
-                etiquetaResultado.Text = $"Usuario : {usuario}";
+            return resultado;
+        }
 
+        private async Task<bool> PayVerification(string serial)
+        {
+            try
+            {
+                bool pagos = await _payService.Suscription(serial, _customerService);
+                if (pagos) {
+                    return pagos;
+                }
+                else
+                {
+                    return false;
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", $"Error en la verificación de pago: {ex.Message}", "OK");
+                return false;
             }
         }
-        private void OnCancelarClicked(object sender, EventArgs e)
-        {
-            SuscripcionView.IsVisible = false; // Ocultar el formulario de suscripción
-        }
-
-
     }
 }

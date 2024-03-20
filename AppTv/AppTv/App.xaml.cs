@@ -19,7 +19,6 @@ namespace AppTv
         {
             InitializeComponent();
             MainPage = new NavigationPage(new MainPage());
-
         }
 
        

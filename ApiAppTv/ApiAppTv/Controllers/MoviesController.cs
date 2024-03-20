@@ -1,6 +1,9 @@
 ﻿using ApiAppTv.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace ApiAppTv.Controllers
 {
@@ -89,6 +92,4 @@ namespace ApiAppTv.Controllers
             return _context.Movie.Any(e => e.Id == id);
         }
     }
-
-
 }

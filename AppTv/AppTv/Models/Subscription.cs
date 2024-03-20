@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ApiAppTv.Models
+namespace AppTv.Models
 {
     public class Subscription
     {
